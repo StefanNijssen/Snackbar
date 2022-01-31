@@ -95,7 +95,7 @@ while True:
     opnieuw = int(input('Wilt u meer bestellen?\nJa(1), Nee(2)'))
     if opnieuw == 2:
         break
-
+ 
 totalCostSnacks = calculateTotalCost()
 print(totalCostSnacks)
 createTicket(totalCostSnacks, fullPatatOrder, fullKroketOrder, fullFrikandelOrder)
