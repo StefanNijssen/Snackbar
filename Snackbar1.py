@@ -1,5 +1,10 @@
 from tkinter import W
-
+totalCostSauce = 0
+fullPatatOrder = ''
+totalCostFrikandel = 0
+fullFrikandelOrder = ''
+totalCostKroket = 0
+fullKroketlOrder = ''
 
 amountPatat = int(input("Hoeveel patat wilt u bestellen?"))
 amountFrikadellen = int(input("Hoeveel frikadellen wilt u bestellen?"))
@@ -7,7 +12,7 @@ amountKroketten = int(input("Hoeveel kroketten wilt u bestellen?"))
 
 def calculateTotalCost(): 
     
-    totalCostSnacks = totalCostFrikandel + totalCostKroket + totalCostPatat
+    totalCostSnacks = totalCostFrikandel + totalCostKroket + totalCostSauce
     return totalCostSnacks
 
 def createTicket(totalCostSnacks):
@@ -26,28 +31,30 @@ def createTicket(totalCostSnacks):
         totalCost = totalCostSnacks * 0.925 
         print(allExtras + '\nBon:\nUw totale kosten zijn: €' + str(round(totalCost, 3)))
 
-totalCostPatat = 0
-fullPatatOrder = ''
-totalCostFrikandel = 0
-fullFrikandelOrder = ''
-totalCostKroket = 0
-fullKroketlOrder = ''
+def chooseSauce(Snack):
+    totalCostSauce = 0
+    fullOrder = ''
+    if whatSauce == 1:
+        totalCostSauce += 0.50
+        fullOrder += str(Snack) + ' met Mayonaise\n'
+    elif whatSauce == 2:
+        totalCostSauce += 0.40
+        fullOrder += str(Snack) + ' met Ketchup\n'
+    elif whatSauce == 3:
+        totalCostSauce += 0.80
+        fullOrder += str(Snack) + ' met Pindasaus\n'
+    elif whatSauce == 4:
+        totalCostSauce += 0
+        fullOrder += str(Snack) + ' zonder saus\n'
+    return totalCostSauce
+
+
+
 while True:
     for i in range(amountPatat):
         whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3), Geen saus(4)'))
-        if whatSauce == 1:
-            totalCostPatat += 0.50
-            fullPatatOrder += 'Patat met Mayonaise\n'
-        elif whatSauce == 2:
-            totalCostPatat += 0.40
-            fullPatatOrder += 'Patat met Ketchup\n'
-        elif whatSauce == 3:
-            totalCostPatat += 0.80
-            fullPatatOrder += 'Patat met Pindasaus\n'
-        elif whatSauce == 4:
-            totalCostPatat += 0
-            fullPatatOrder += 'Patat zonder saus\n'
-        totalCostPatat += 2.95
+        totalCostSauce += chooseSauce(whatSauce)
+        totalCostSauce += 2.95
 
     for i in range(amountFrikadellen):
         whatFrikandel = int(input('Wat voor soort frikandel wilt u?\nNormaal(1), XXL(2), Vega(3)'))
