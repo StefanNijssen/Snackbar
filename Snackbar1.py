@@ -1,3 +1,6 @@
+from tkinter import W
+
+
 amountPatat = int(input("Hoeveel patat wilt u bestellen?"))
 amountFrikadellen = int(input("Hoeveel frikadellen wilt u bestellen?"))
 amountKroketten = int(input("Hoeveel kroketten wilt u bestellen?"))
@@ -24,7 +27,19 @@ def createTicket(totalCostSnacks):
         totalCost = totalCostSnacks * 0.925 
         print('Bon:\nUw totale kosten zijn: ' + str(round(totalCost, 2)))
 
+for i in range(amountPatat):
+    totalCostSauce = 0
+    totalCostFrikandel = 0
+    totalCostKroket = 0
+    whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3)'))
+    if whatSauce == 1:
+        totalCostSauce += 0.50
+    elif whatSauce == 2:
+        totalCostSauce += 0.40
+    elif whatSauce == 3:
+        totalCostSauce += 0,80
 
-totalCostSnacks = calculateTotalCost()
+
+
 print(totalCostSnacks)
 createTicket(totalCostSnacks)
