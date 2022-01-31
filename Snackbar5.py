@@ -1,4 +1,4 @@
-
+import random
 totalCostSauce = 0
 fullPatatOrder = ''
 totalCostFrikandel = 0
@@ -10,11 +10,11 @@ fullKroketOrder = ''
 
 def calculateTotalCost(): 
     
-    totalCostSnacks = totalCostFrikandel + totalCostKroket + totalCostSauce
+    totalCostSnacks = totalCostFrikandel + totalCostKroket + totalCostSauce + totalCostBittergarnituur
     return totalCostSnacks
 
 def createTicket(totalCostSnacks, fullPatatOrder, fullKroketlOrder, fullFrikandelOrder):
-    allExtras = fullKroketlOrder + fullPatatOrder + fullFrikandelOrder
+    allExtras = fullKroketlOrder + fullPatatOrder + fullFrikandelOrder + bittergarnituurlijst
     if totalCostSnacks == 0:
         print('Bon\n' + 'U heeft niks besteld.')
     elif totalCostSnacks <= 10.00:
@@ -46,7 +46,23 @@ def chooseSauce(whatSauce, Snack):
         fullOrder += Snack + ' zonder saus'
     return fullOrder, totalCostSauce
 
-
+def makeSnackList():
+    bitterGarnituurLijst = ''
+    Bittergarnituur = ['bitterbal ', 'kaasvlammetje ', 'kroketje ', 'frikandel ']
+    size = input('Wilt u mini, normaal of groot?')
+    if size == 'mini':
+        for i in range(6):
+            bitterGarnituurLijst = bitterGarnituurLijst + random.choice(Bittergarnituur)
+            totalCostBittergarnituur = 3.00
+    elif size == 'normaal':
+        for i in range(12):
+            bitterGarnituurLijst = bitterGarnituurLijst + random.choice(Bittergarnituur)
+            totalCostBittergarnituur = 5.50          
+    if size == 'groot':
+        for i in range(18):
+            bitterGarnituurLijst = bitterGarnituurLijst + random.choice(Bittergarnituur)
+            totalCostBittergarnituur = 10
+    return totalCostBittergarnituur, bitterGarnituurLijst
 
 while True:
     amountPatat = int(input("Hoeveel patat wilt u bestellen?"))
@@ -92,10 +108,17 @@ while True:
             totalCostKroket += 0
             fullKroketOrder = '\n'+ fullKroketOrder + ' en zonder broodje\n'
         totalCostKroket += 2.50
+    surpise = input('Wilt u een surpise bittergarnituur')
+    if surpise == 'ja':
+        totalCostBittergarnituur, bittergarnituurlijst = makeSnackList()
     opnieuw = int(input('Wilt u meer bestellen?\nJa(1), Nee(2)'))
     if opnieuw == 2:
         break
- 
+
+
+
+    
+        
 totalCostSnacks = calculateTotalCost()
 print(totalCostSnacks)
 createTicket(totalCostSnacks, fullPatatOrder, fullKroketOrder, fullFrikandelOrder)
