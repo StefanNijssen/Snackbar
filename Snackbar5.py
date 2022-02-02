@@ -64,55 +64,68 @@ def makeSnackList():
             totalCostBittergarnituur = 10
     return totalCostBittergarnituur, bitterGarnituurLijst
 
+def makeDictionary(whatOrder, amount):
+    wholeOrder = {'Patat' : 0, 'Frikandel' : 0, 'Kroket' : 0}
+    wholeOrder[whatOrder] = amount
+    print(wholeOrder)
+       
 while True:
-    amountPatat = int(input("Hoeveel patat wilt u bestellen?"))
-    
-    for i in range(amountPatat):
-        whatSnack = 'Patat'
-        whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3), Geen saus(4)'))
-        fullPatatOrder, totalCostSaucePatat = chooseSauce(whatSauce, whatSnack)
-        totalCostSauce += totalCostSaucePatat
-        totalCostSauce += 2.95
-    amountFrikadellen = int(input("Hoeveel frikadellen wilt u bestellen?"))
-    
-    for i in range(amountFrikadellen):
-        whatFrikandel = int(input('Wat voor soort frikandel wilt u?\nNormaal(1), XXL(2), Vega(3)'))
-        whatSnack = 'Frikandel'
-        whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3), Geen saus(4)'))
-        fullFrikandelOrder, totalCostSauceFrikandel = chooseSauce(whatSauce, whatSnack)
-        totalCostSauce += totalCostSauceFrikandel
-        totalCostSauce += 2.95
-        if whatFrikandel == 1:
-            totalCostFrikandel += 0
-            fullFrikandelOrder = '\n'+ 'Normale ' + fullFrikandelOrder + '\n'
-        elif whatFrikandel == 2:
-            totalCostFrikandel += 1.00
-            fullFrikandelOrder = '\n'+ 'XXl ' + fullFrikandelOrder + '\n'
-        elif whatFrikandel == 3:
-            totalCostFrikandel += 1.50
-            fullFrikandelOrder = '\n'+ 'Vega ' + fullFrikandelOrder + '\n'
-        totalCostFrikandel += 2.80
+    whatOrder = input('Wat wilt u bestellen?')
+    if whatOrder == 'Patat':
+        amount = int(input('Hoeveel wilt u daar van bestellen?'))
+        makeDictionary(whatOrder, amount)
 
-    amountKroketten = int(input("Hoeveel kroketten wilt u bestellen?"))
-    for i in range(amountKroketten):
-        whatKroket = int(input('Wilt u een broodje bij de kroket?\nJa(1), Nee(2)'))
-        whatSnack = 'Kroket'
-        whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3), Geen saus(4)'))
-        fullKroketOrder, totalCostSauceKroket = chooseSauce(whatSauce, whatSnack)
-        totalCostSauce += totalCostSauceKroket
-        totalCostSauce += 2.95
-        if whatKroket == 1:
-            totalCostKroket += 1.00
-            fullKroketOrder = '\n'+ fullKroketOrder + ' en met broodje\n'
-        elif whatFrikandel == 2:
-            totalCostKroket += 0
-            fullKroketOrder = '\n'+ fullKroketOrder + ' en zonder broodje\n'
-        totalCostKroket += 2.50
+        for i in range(amount):
+            whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3), Geen saus(4)'))
+            fullPatatOrder, totalCostSaucePatat = chooseSauce(whatSauce, whatOrder)
+            totalCostSauce += totalCostSaucePatat
+            totalCostSauce += 2.95
+    if whatOrder == 'Frikandel':
+        amount = int(input('Hoeveel wilt u daar van bestellen?'))
+        makeDictionary(whatOrder, amount)
+    
+        for i in range(amount):
+            whatFrikandel = int(input('Wat voor soort frikandel wilt u?\nNormaal(1), XXL(2), Vega(3)'))
+            whatOrder = 'Frikandel'
+            whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3), Geen saus(4)'))
+            fullFrikandelOrder, totalCostSauceFrikandel = chooseSauce(whatSauce, whatOrder)
+            totalCostSauce += totalCostSauceFrikandel
+            totalCostSauce += 2.95
+            if whatFrikandel == 1:
+                totalCostFrikandel += 0
+                fullFrikandelOrder = '\n'+ 'Normale ' + fullFrikandelOrder + '\n'
+            elif whatFrikandel == 2:
+                totalCostFrikandel += 1.00
+                fullFrikandelOrder = '\n'+ 'XXl ' + fullFrikandelOrder + '\n'
+            elif whatFrikandel == 3:
+                totalCostFrikandel += 1.50
+                fullFrikandelOrder = '\n'+ 'Vega ' + fullFrikandelOrder + '\n'
+            totalCostFrikandel += 2.80
+
+    if whatOrder == 'Kroket':
+            amount = int(input('Hoeveel wilt u daar van bestellen?'))
+            makeDictionary(whatOrder, amount)
+
+        for i in range(amount):
+            whatKroket = int(input('Wilt u een broodje bij de kroket?\nJa(1), Nee(2)'))
+            whatOrder = 'Kroket'
+            whatSauce = int(input('Welke saus wilt u erbij?\nMayonaise(1), Ketchup(2), Pindasaus(3), Geen saus(4)'))
+            fullKroketOrder, totalCostSauceKroket = chooseSauce(whatSauce, whatOrder)
+            totalCostSauce += totalCostSauceKroket
+            totalCostSauce += 2.95
+            if whatKroket == 1:
+                totalCostKroket += 1.00
+                fullKroketOrder = '\n'+ fullKroketOrder + ' en met broodje\n'
+            elif whatFrikandel == 2:
+                totalCostKroket += 0
+                fullKroketOrder = '\n'+ fullKroketOrder + ' en zonder broodje\n'
+            totalCostKroket += 2.50
     surpise = input('Wilt u een surpise bittergarnituur')
     if surpise == 'ja':
         totalCostBittergarnituur, bittergarnituurlijst = makeSnackList()
     opnieuw = int(input('Wilt u meer bestellen?\nJa(1), Nee(2)'))
     if opnieuw == 2:
+
         break
 
 
